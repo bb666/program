@@ -1,0 +1,26 @@
+﻿@model BodyInfoManagement.Models.Administrator
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Administrator</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AdministratorPassword)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdministratorPassword)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AdministratorId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

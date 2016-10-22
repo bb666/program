@@ -1,0 +1,103 @@
+﻿@model BodyInfoManagement.Models.HealthInfo
+
+@{
+    ViewBag.Title = "Details";
+    string picSrc = @"/Content/ChartTemp/Radar.jpeg?" + DateTime.Now.Second.ToString();
+}
+
+<h2>Details</h2>
+
+<div id="imglist" class="panel" style="display: block;">
+    <img class="container" src=@picSrc />
+</div>
+
+<div>
+    <h4>HealthInfo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Student.SaltCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Student.SaltCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExamDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExamDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Height)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Height)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Weigh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Weigh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Jump)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Jump)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Breath)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Breath)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Seated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Seated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LongRun)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LongRun)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShortRun)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShortRun)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pull)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pull)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.HealthInfoId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

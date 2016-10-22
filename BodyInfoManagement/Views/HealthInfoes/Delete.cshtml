@@ -1,0 +1,104 @@
+﻿@model BodyInfoManagement.Models.HealthInfo
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>HealthInfo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Student.SaltCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Student.SaltCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExamDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExamDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Height)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Height)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Weigh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Weigh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Jump)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Jump)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Breath)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Breath)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Seated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Seated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LongRun)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LongRun)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShortRun)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShortRun)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pull)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pull)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

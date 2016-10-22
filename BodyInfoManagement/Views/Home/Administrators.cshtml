@@ -1,0 +1,34 @@
+﻿@{
+    ViewBag.Title = "管理员界面";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-header">
+    <h1 class="text-center">BIMS<small>@ViewBag.Title</small></h1>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title"><span class="glyphicon glyphicon-comment"></span>&nbsp;用户管理</h3>
+            </div>
+            <div class="panel-body">
+                <button type="button" class="btn btn-primary btn-block" onclick="location.href='@Url.Action("Index", "Students", routeValues: new { id = Session["NowUserId"] })'"> 学生用户信息</button>
+                <button type="button" class="btn btn-primary btn-block" onclick="location.href='@Url.Action("Index", "Teachers", routeValues: new { id = Session["NowUserId"] })'"> 教师用户信息</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title"><span class="glyphicon glyphicon-tasks"></span>&nbsp;数据管理</h3>
+            </div>
+            <div class="panel-body">
+                @Html.ActionLink("健康数据", "Index", "HealthInfoes", null, new { @class = "btn btn-info btn-block" })
+                @Html.ActionLink("权限分配", "Index", "HealthInfoes", null, new { @class = "btn btn-info btn-block" })
+            </div>
+        </div>
+    </div>
+</div>
+

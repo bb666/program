@@ -1,0 +1,108 @@
+﻿@model IEnumerable<BodyInfoManagement.Models.HealthInfo>
+
+@{
+    ViewBag.Title = "健康数据信息";
+    bool auth = false;
+    if (Session["NowUserType"] != null)
+    {
+        if (Session["NowUserAuth"] as bool? == true)
+        {
+            auth = true;
+        }
+    }
+}
+
+<div class="page-header">
+    <h1 class="text-center">@ViewBag.Title</h1>
+</div>
+
+@if (auth)
+{
+    <p>
+        @Html.ActionLink("添加新项", "Create", null, new { @class = "btn btn-success" })
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Student.StudentId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExamDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Height)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Weigh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Jump)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Breath)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Seated)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LongRun)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShortRun)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pull)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @if (auth)
+            {
+                @Html.ActionLink(item.Student.StudentId, "Edit", new { id = item.HealthInfoId })
+            }
+            else
+            {
+                @Html.ActionLink(item.Student.StudentId, "Details", new { id = item.HealthInfoId })
+            }            
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExamDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Height)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Weigh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Jump)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Breath)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Seated)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LongRun)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShortRun)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pull)
+        </td>
+        <td>
+            @if (auth)
+            {
+                @Html.ActionLink("删除", "Delete", new { id = item.HealthInfoId })
+            }
+        </td>
+    </tr>
+}
+
+</table>
