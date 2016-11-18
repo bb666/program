@@ -1,0 +1,177 @@
+﻿@model BodyInfoManagement.Models.HealthInfo
+
+@{
+    ViewBag.Title = "健康数据详细信息";
+    string picSrc = @"/Content/ChartTemp/Radar.jpeg?" + DateTime.Now.Second.ToString();
+    string picPolarSrc = @"/Content/ChartTemp/Area.jpeg?" + DateTime.Now.Second.ToString();
+    string picColumnSrc = @"/Content/ChartTemp/Column.jpeg?" + DateTime.Now.Second.ToString();
+
+    bool auth = false;
+
+    if (Session["NowUserType"] != null)
+    {
+        if (Session["NowUserAuth"] as bool? == true)
+        {
+            auth = true;
+        }
+    }
+}
+
+<div class="page-header">
+    <h1 class="text-center">@ViewBag.Title
+    @if (auth)
+    {
+        <small>
+            @Html.ActionLink("编辑", "Edit", new { id = Model.HealthInfoId })
+        </small>
+    }
+    </h1>
+</div>
+
+<div class="panel-group" role="tablist">
+    <div class="panel panel-info">
+        <div class="panel-heading" role="tab" id="collapseListGroupHeading2">
+            <h4 class="panel-title">
+                <a class="" data-toggle="collapse" href="#collapseListGroup2" aria-expanded="true" aria-controls="collapseListGroup2">
+                    健康数据
+                </a>
+            </h4>
+        </div>
+        <div id="collapseListGroup2" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapseListGroupHeading2" aria-expanded="true" style="padding:20px">
+            <div class="row">
+                <div class="col-md-6">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Student.StudentId)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Student.StudentId)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Height)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Height)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Weigh)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Weigh)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Jump)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Jump)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Seated)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Seated)
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-md-6">
+                    <dl class="dl-horizontal">
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.ExamDate)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.ExamDate)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Breath)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Breath)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.LongRun)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.LongRun)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.ShortRun)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.ShortRun)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Pull)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Pull)
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel-group" role="tablist">
+    <div class="panel panel-primary">
+        <div class="panel-heading" role="tab" id="collapseListGroupHeading3">
+            <h4 class="panel-title">
+                <a class="" data-toggle="collapse" href="#collapseListGroup3" aria-expanded="true" aria-controls="collapseListGroup3">
+                    雷达图
+                </a>
+            </h4>
+        </div>
+        <div id="collapseListGroup3" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapseListGroupHeading3" aria-expanded="true" style="padding:20px">
+            <img src=@picSrc alt=@ViewBag.Title class="img-responsive">
+        </div>
+    </div>
+</div>
+
+<div class="panel-group" role="tablist">
+    <div class="panel panel-warning">
+        <div class="panel-heading" role="tab" id="collapseListGroupHeading4">
+            <h4 class="panel-title">
+                <a class="" data-toggle="collapse" href="#collapseListGroup4" aria-expanded="true" aria-controls="collapseListGroup4">
+                    面积图
+                </a>
+            </h4>
+        </div>
+        <div id="collapseListGroup4" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapseListGroupHeading4" aria-expanded="true" style="padding:20px">
+            <img src=@picPolarSrc alt=@ViewBag.Title class="img-responsive">
+        </div>
+    </div>
+</div>
+
+<div class="panel-group" role="tablist">
+    <div class="panel panel-success">
+        <div class="panel-heading" role="tab" id="collapseListGroupHeading5">
+            <h4 class="panel-title">
+                <a class="" data-toggle="collapse" href="#collapseListGroup5" aria-expanded="true" aria-controls="collapseListGroup5">
+                    柱形图
+                </a>
+            </h4>
+        </div>
+        <div id="collapseListGroup5" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapseListGroupHeading5" aria-expanded="true" style="padding:20px">
+            <img src=@picColumnSrc alt=@ViewBag.Title class="img-responsive">
+        </div>
+    </div>
+</div>

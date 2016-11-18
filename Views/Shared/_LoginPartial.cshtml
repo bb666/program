@@ -1,0 +1,49 @@
+﻿@{
+    int? nowUserType = -1;
+    string nowUserId = string.Empty;
+    if (Session["NowUserType"] != null)
+    {
+        nowUserType = Session["NowUserType"] as int?;
+        nowUserId = Session["NowUserId"].ToString();
+    }
+    using (Html.BeginForm("Logoff", "Home", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+        <ul class="nav navbar-nav navbar-right">
+            @switch (nowUserType)
+            {
+                case 0:
+                    <li>
+                        @Html.ActionLink("查看信息", "Details", "Teachers", new { id = nowUserId }, null)
+                    </li>
+                    <li>
+                        @Html.ActionLink("修改密码", "Pass", "Home")
+                    </li>
+                    <li>@Html.ActionLink("健康数据", "Index", "HealthInfoes")</li>
+                    <li><a href="javascript:document.getElementById('logoutForm').submit()">注销</a></li>
+                    break;
+                case 1:
+                    <li>
+                        @Html.ActionLink("查看信息", "Details", "Students", new { id = nowUserId }, null)
+                    </li>
+                    <li>
+                        @Html.ActionLink("修改密码", "Pass", "Home")
+                    </li>
+                    <li>
+                        @Html.ActionLink("健康数据", "Index", "HealthInfoes", new { id = nowUserId }, null)
+                    </li>
+                    <li><a href="javascript:document.getElementById('logoutForm').submit()">注销</a></li>
+                    break;
+                case 2:
+                    <li>@Html.ActionLink("学生信息", "Index", "Students")</li>
+                    <li>@Html.ActionLink("教师信息", "Index", "Teachers")</li>
+                    <li>@Html.ActionLink("健康数据", "Index", "HealthInfoes")</li>
+                    <li><a href="javascript:document.getElementById('logoutForm').submit()">注销</a></li>
+                    break;
+                default:
+                    <li>@Html.ActionLink("登录", "Login", "Home")</li>
+                    break;
+            }
+        </ul>
+    }
+}

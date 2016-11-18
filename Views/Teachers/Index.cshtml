@@ -1,0 +1,70 @@
+﻿@model IEnumerable<BodyInfoManagement.Models.Teacher>
+
+@{
+    ViewBag.Title = "教师用户信息";
+}
+
+<div class="page-header">
+    <h1 class="text-center">@ViewBag.Title</h1>
+</div>
+
+@using (Html.BeginForm("Index", "Teachers", FormMethod.Get))
+{
+    <div class="form-inline">
+        <div class="form-group">
+            @Html.ActionLink("添加新项", "Create", null, new { @class = "btn btn-success" })
+        </div>
+        <div class="form-group">
+            @Html.ActionLink("设置所有教师可修改信息", "SetTeachersAuth", "Home", null, new { @class = "btn btn-warning" })
+        </div>
+        <div class="form-group">
+            @Html.ActionLink("设置所有教师不可修改信息", "BackTeachersAuth", "Home", null, new { @class = "btn btn-danger" })
+        </div>
+        <div class="form-group">
+            @Html.TextBox("Id", "", htmlAttributes: new { @class = "form-control", placeholder = "输入职工号" })
+        </div>
+        <input type="submit" value="筛选" class="btn btn-info" />
+    </div>
+}
+<hr />
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TeacherId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TeacherPassword)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TeacherEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StudentAuth)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+
+            @Html.ActionLink(item.TeacherId, "Details", new { id = item.TeacherId })
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TeacherPassword)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TeacherEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StudentAuth)
+        </td>
+        <td>
+            @Html.ActionLink("编辑", "Edit", new { id=item.TeacherId }) |
+            @Html.ActionLink("删除", "Delete", new { id=item.TeacherId })
+        </td>
+    </tr>
+}
+
+</table>

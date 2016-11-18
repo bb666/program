@@ -1,0 +1,141 @@
+﻿@model IEnumerable<BodyInfoManagement.Models.HealthInfo>
+
+@{
+    ViewBag.Title = "健康数据信息";
+    bool auth = false;
+    if (Session["NowUserType"] != null)
+    {
+        if (Session["NowUserAuth"] as bool? == true)
+        {
+            auth = true;
+        }
+    }
+
+    string tableBody = string.Empty;
+
+    foreach(var item in Model)
+    {
+        tableBody += item.StudentId + "," + item.Student.StudentGender + "," + item.ExamDate.Year + "-" + item.ExamDate.Month + "-" + item.ExamDate.Day + ","
+            + item.Height + "," + item.Weigh + "," + item.Jump + "," + item.Breath + "," + item.Seated + ","
+            + item.LongRun + "," + item.ShortRun + "," + item.Pull + '\n';
+    }
+}
+
+<script>
+    function clickDownload(aLink) {
+        var str = "学号,性别,测量日期,身高,体重,立定跳远,肺活量,坐位体前屈,1000米/800米,100米/50米,引体向上/仰卧起坐\n";
+        var bodyname = document.getElementById("test").name;
+        str = encodeURIComponent(str);
+        aLink.href = "data:text/csv;charset=utf-8,\ufeff" + str + bodyname;
+    }
+</script>
+
+<div class="page-header">
+    <h1 class="text-center">@ViewBag.Title
+    <small>
+        <a id="test" name=@tableBody onclick="clickDownload(this)" download="HealthInfoes.csv" href="#">导出CSV</a>
+        </small></h1>
+</div>  
+
+@if (auth)
+{
+    using (Html.BeginForm("Index", "HealthInfoes", FormMethod.Get))
+    {
+        <div class="form-inline">
+            <div class="form-group">
+                @Html.ActionLink("添加新项", "Create", null, new { @class = "btn btn-success" })
+            </div>
+            <div class="form-group">
+                @Html.TextBox("Id", "", htmlAttributes: new { @class = "form-control", placeholder = "输入学号" })
+            </div>
+            <div class="form-group">
+                @Html.TextBox("Year", "", htmlAttributes: new { @class = "form-control", placeholder = "输入年份" })
+            </div>
+            <input type="submit" value="筛选" class="btn btn-success" />
+        </div>
+    }
+    <hr />
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Student.StudentId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Student.StudentGender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExamDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Height)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Weigh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Jump)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Breath)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Seated)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LongRun)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShortRun)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pull)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink(item.Student.StudentId, "Details", new { id = item.HealthInfoId })
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Student.StudentGender)
+        </td>
+        <td>
+            @(item.ExamDate.Year + "-" + item.ExamDate.Month + "-" + item.ExamDate.Day)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Height)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Weigh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Jump)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Breath)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Seated)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LongRun)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShortRun)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pull)
+        </td>
+        <td>
+            @if (auth)
+            {
+                @Html.ActionLink("删除", "Delete", new { id = item.HealthInfoId })
+            }
+        </td>
+    </tr>
+}
+
+</table>
