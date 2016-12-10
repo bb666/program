@@ -1,0 +1,33 @@
+﻿@model IEnumerable<BodyInfoManagement.Models.Administrator>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AdministratorPassword)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdministratorPassword)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.AdministratorId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.AdministratorId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AdministratorId })
+        </td>
+    </tr>
+}
+
+</table>

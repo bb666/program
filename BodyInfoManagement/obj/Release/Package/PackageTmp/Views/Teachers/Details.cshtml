@@ -1,0 +1,50 @@
+﻿@model BodyInfoManagement.Models.Teacher
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Teacher</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SaltCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SaltCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TeacherPassword)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TeacherPassword)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TeacherEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TeacherEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StudentAuth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StudentAuth)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TeacherId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
